@@ -14,23 +14,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BG_Scroll : MonoBehaviour {
+public class Player_Shot : MonoBehaviour {
 
-	//this varaible sets the speed at which the backrgound moves
-	public float scrollSpeed;
-
-	public float tileSize;
-
-	private Vector2 startPosition;
-
-	// Use this for initialization
-	void Start () {
-		startPosition = transform.position;
-	}
+	public float speed;
 	
-	// Update is called once per frame
-	void Update () {
-		float newPosition = Mathf.Repeat (Time.time * scrollSpeed, tileSize);
-		transform.position = startPosition + Vector2.right * newPosition;
+	//ASSERTION* this class creates an object that will be used as a prefab
+	// On instantiation this object will propel forward 
+
+	void Start () {
+
+		
+		GetComponent<Rigidbody2D>().velocity = transform.up * speed;
 	}
+
 }

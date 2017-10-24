@@ -1,10 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Player_Controller : MonoBehaviour {
-
-	/*
+﻿/*
 	 * Sean Dougan
 	 * Student Number: 101029633
 	 * Comp3064 Game Development
@@ -15,16 +9,31 @@ public class Player_Controller : MonoBehaviour {
 	 * 	   layout/sorted layout (Drawable Layers and Orders)
 	 * (4)
 	 */
+//#############################################################################################################
+
+//IMPORTS
+using System.Collections;
+using System.Collections.Generic; 
+using UnityEngine;
+
+//Serializable uses an algorythm and .net runtime to transform, stream and store objects between applications
+// as bits or bytes of data. Can instantiate live objects with no direct call to a class with this Annotation.
+[System.Serializable]
+public class GameWindowSize{
 
 	//These set of variables apply the positional bounds of the moveable area
 	public float xMin, xMax, yMin, yMax;
 
+}
+
+public class Player_Controller : MonoBehaviour {
+	
+	//References the game window size
+	public GameWindowSize GWS;
 	//this public variable holds the multiplier data for charachter translation
 	public float speed;
-
 	//fixed update executes for every physics change
 	void FixedUpdate(){
-
 		//field members hold movement axis
 		float moveSide = Input.GetAxis("Horizontal");
 		float moveVert = Input.GetAxis ("Vertical");
@@ -37,8 +46,28 @@ public class Player_Controller : MonoBehaviour {
 
 		//Clamps player to camera object
 		GetComponent<Rigidbody2D>().position = new Vector2 (
-			Mathf.Clamp(GetComponent<Rigidbody2D>().position.x, xMin, xMax),
-			Mathf.Clamp(GetComponent<Rigidbody2D>().position.y, yMin, yMax)
+			Mathf.Clamp(GetComponent<Rigidbody2D>().position.x, GWS.xMin, GWS.xMax),
+			Mathf.Clamp(GetComponent<Rigidbody2D>().position.y, GWS.yMin, GWS.yMax)
 		);
+	}
+
+	//This is our shot prefab
+	public GameObject shot;
+	//The spawnable game object attacked to Player_Ship
+	public Transform ShotSpawn;
+	//How fast the ship fires
+	public float fireRate;
+
+	//the next shot
+	private float nextFire;
+
+	void Update ()
+	{
+		if (Input.GetButton("Fire1") && Time.time > nextFire)
+		{
+			nextFire = Time.time + fireRate;
+			GameObject newshot = Instantiate(shot, ShotSpawn.position, ShotSpawn.rotation);
+			Destroy (newshot, 1);
+		}
 	}
 }
