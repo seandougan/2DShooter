@@ -27,4 +27,15 @@ public class Player_Shot : MonoBehaviour {
 		GetComponent<Rigidbody2D>().velocity = transform.up * speed;
 	}
 
+	public GameObject boom;
+
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.gameObject.tag.Equals ("Enemy") == true) {
+			GameObject temp = Instantiate (boom, this.transform.position, this.transform.rotation);
+			Destroy (other.gameObject);
+			Destroy (gameObject);
+			Destroy (temp, 0.5F);
+		}
+	}
+
 }

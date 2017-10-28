@@ -1,10 +1,11 @@
 fileFormatVersion: 2
 guid: 1de66ca663afb6c41876135bf66f5552
-timeCreated: 1508589701
+timeCreated: 1508879949
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: ships_saucer_0
+    21300002: ships_saucer_1
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -83,6 +84,20 @@ TextureImporter:
         y: 533
         width: 101
         height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: ships_saucer_1
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 467
+        width: 59
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

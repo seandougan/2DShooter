@@ -18,6 +18,7 @@ using UnityEngine;
 
 //Serializable uses an algorythm and .net runtime to transform, stream and store objects between applications
 // as bits or bytes of data. Can instantiate live objects with no direct call to a class with this Annotation.
+//Used by unity to create portions of its wysiwyg interface
 [System.Serializable]
 public class GameWindowSize{
 
@@ -65,7 +66,12 @@ public class Player_Controller : MonoBehaviour {
 	{
 		if (Input.GetButton("Fire1") && Time.time > nextFire)
 		{
+			//calculating the time between shots (Creating delta T relative to game clock)
 			nextFire = Time.time + fireRate;
+
+			//In order to destroy need to reference a game object to instantiate into a reference that
+			//(1) Does not have the permanency of class fields
+			//(2) Is not a reference to the prefab asset directly but its own mutable game object
 			GameObject newshot = Instantiate(shot, ShotSpawn.position, ShotSpawn.rotation);
 			Destroy (newshot, 1);
 		}
