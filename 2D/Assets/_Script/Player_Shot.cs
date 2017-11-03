@@ -17,24 +17,36 @@ using UnityEngine;
 public class Player_Shot : MonoBehaviour {
 
 	public float speed;
+
+	private int scoreVal = 50;
+
+	private Game_Controller gameController;
+
 	
 	//ASSERTION* this class creates an object that will be used as a prefab
 	// On instantiation this object will propel forward 
 
 	void Start () {
 
-		
-		GetComponent<Rigidbody2D>().velocity = transform.up * speed;
-	}
+		GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
+	
 
+			gameController = gameControllerObject.GetComponent<Game_Controller> ();
+
+		GetComponent<Rigidbody2D>().velocity = transform.up * speed;
+	} 
+	//references explosion prefab
 	public GameObject boom;
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.tag.Equals ("Enemy") == true) {
+			gameController.addScore (scoreVal);
 			GameObject temp = Instantiate (boom, this.transform.position, this.transform.rotation);
 			Destroy (other.gameObject);
 			Destroy (gameObject);
 			Destroy (temp, 0.5F);
+
+
 		}
 	}
 

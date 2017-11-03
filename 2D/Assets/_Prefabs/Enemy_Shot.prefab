@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   boom: {fileID: 1849201711846306, guid: 9eb4471b446e8b340abb087c7589093e, type: 2}
+  Player: {fileID: 1291846440963528, guid: 40b5c15992802da498f8726d2c6fa08d, type: 2}
 --- !u!212 &212934344689039008
 SpriteRenderer:
   m_ObjectHideFlags: 1

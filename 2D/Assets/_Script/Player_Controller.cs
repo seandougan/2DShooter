@@ -28,7 +28,8 @@ public class GameWindowSize{
 }
 
 public class Player_Controller : MonoBehaviour {
-	
+
+	private AudioSource audio;
 	//References the game window size
 	public GameWindowSize GWS;
 	//this public variable holds the multiplier data for charachter translation
@@ -73,6 +74,8 @@ public class Player_Controller : MonoBehaviour {
 			//(1) Does not have the permanency of class fields
 			//(2) Is not a reference to the prefab asset directly but its own mutable game object
 			GameObject newshot = Instantiate(shot, ShotSpawn.position, ShotSpawn.rotation);
+			audio = GetComponent<AudioSource> ();
+			audio.Play ();
 			Destroy (newshot, 1);
 		}
 	}
