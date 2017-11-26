@@ -49,6 +49,9 @@ public class Game_Controller : MonoBehaviour {
 	}
 	//listens for you to be dead and if so resets the game and brings up the game menu over top
 	void Update(){
+		
+	
+			
 		if (lives == 0) {
 			
 			GameOn = false;

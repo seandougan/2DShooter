@@ -24,23 +24,31 @@ public class Enemy_Shot : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D PlayerShip){
 
-		if(PlayerShip.gameObject.tag.Equals("Player") == true){
+		if (PlayerShip.gameObject.tag.Equals ("Player") == true) {
 
 
-			GameObject temp = Instantiate (boom, this.transform.position, this.transform.rotation);
-			Destroy (PlayerShip.gameObject);
-			Destroy (gameObject);
-			Destroy (temp, 0.5F);
-
-			int tmp = GC.GetLives();
+		
+				
+			int tmp = GC.GetLives ();
 			if (tmp != 0) {
 				GC.Hit ();
-				GC.UpdateLives();
-				Vector2 new_ship = new Vector2 (2, -17);
-				Quaternion rot = Quaternion.Euler (0, 0, 0);
-				Instantiate (Player, new_ship, rot);
+				GC.UpdateLives ();
+				if (tmp == 0) {
+					GameObject temp = Instantiate (boom, this.transform.position, this.transform.rotation);
+					Destroy (Player.gameObject);
+					Destroy (gameObject);
+					Destroy (temp, 0.5F);
+					Vector2 new_ship = new Vector2 (2, -17);
+					Quaternion rot = Quaternion.Euler (0, 0, 0);
+					Instantiate (Player, new_ship, rot);
+				}
 			}
 
+					
 		}
+
+		
+
+		
 	}
 }
